@@ -10,21 +10,24 @@
 </dependency>
 ```
 
-## Step 2: Add a servlet filter to your deployment descriptor to trace incoming HTTP requests.
+## Step 2: Adding a Tracing Filter to your Application (Spring) to trace incoming HTTP requests.
+- For Spring, add a Filter to your WebConfig class. Pass the segment name to the AWSXRayServletFilter constructor as a string.
+- Example src/main/java/myapp/WebConfig.java - Spring
 ```
-*web.xml*
-<filter>
-  <filter-name>AWSXRayServletFilter</filter-name>
-  <filter-class>com.amazonaws.xray.javax.servlet.AWSXRayServletFilter</filter-class>
-  <init-param>
-    <param-name>fixedName</param-name>
-    <param-value><<CHANGE_THIS_VALUE>></param-value>
-  </init-param>
-</filter>
-<filter-mapping>
-  <filter-name>AWSXRayServletFilter</filter-name>
-  <url-pattern>*</url-pattern>
-</filter-mapping>
+package myapp;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+import javax.servlet.Filter;
+import com.amazonaws.xray.javax.servlet.AWSXRayServletFilter;
+
+@Configuration
+public class WebConfig {
+
+  @Bean
+  public Filter TracingFilter() {
+    return new AWSXRayServletFilter("Scorekeep");
+  }
+}
 ```
 
 ## Step 3: Add a policy to the worker node
