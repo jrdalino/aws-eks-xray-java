@@ -78,20 +78,19 @@ public class MyServiceImpl implements MyService {
 
 ## Step 4: Add a policy to the worker node
 ```
-aws iam attach-role-policy --role-name $ROLE_NAME \
+$ aws iam attach-role-policy --role-name $ROLE_NAME \
 --policy-arn arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess
 ```
 
 ## Step 5: AWS X-Ray DaemonSet - Create a folder and download the daemon
 ```
-~$ mkdir xray-daemon && cd xray-daemon
-~/xray-daemon$ curl https://s3.dualstack.ap-southeast-2.amazonaws.com/aws-xray-assets.ap-southeast-2/xray-daemon/aws-xray-daemon-linux-2.x.zip -o ./aws-xray-daemon-linux-2.x.zip
-~/xray-daemon$ unzip -o aws-xray-daemon-linux-2.x.zip -d .
+$ mkdir xray-daemon && cd xray-daemon
+$ curl https://s3.dualstack.ap-southeast-2.amazonaws.com/aws-xray-assets.ap-southeast-2/xray-daemon/aws-xray-daemon-linux-2.x.zip -o ./aws-xray-daemon-linux-2.x.zip
+$ unzip -o aws-xray-daemon-linux-2.x.zip -d .
 ```
 
 ## Step 6: Create a Dockerfile with the following content.
 ```
-*~/xray-daemon/Dockerfile*
 FROM ubuntu:12.04
 COPY xray /usr/bin/xray-daemon
 CMD xray-daemon -f /var/log/xray-daemon.log &
@@ -107,7 +106,7 @@ $ docker push 222337787619.dkr.ecr.ap-southeast-2.amazonaws.com/bp-xray-daemon-e
 
 ## Step 8: Deploy the X-Ray DaemonSet
 ```
-kubectl create -f https://github.com/jrdalino/myproject-aws-eks-xray-java/xray-k8s-daemonset.yaml
+$ kubectl create -f https://github.com/jrdalino/myproject-aws-eks-xray-java/xray-k8s-daemonset.yaml
 ```
 
 ## Step 9: Validate and View logs
