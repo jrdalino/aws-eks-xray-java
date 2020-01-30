@@ -8,6 +8,14 @@
   <artifactId>aws-xray-recorder-sdk-core</artifactId>
   <version>1.2.1</version>
 </dependency>
+
+OR
+
+<dependency> 
+     <groupId>com.amazonaws</groupId> 
+     <artifactId>aws-xray-recorder-sdk-spring</artifactId> 
+     <version>2.4.0</version> 
+</dependency>
 ```
 
 ## Step 2: Adding a Tracing Filter to your Application (Spring) to trace incoming HTTP requests.
