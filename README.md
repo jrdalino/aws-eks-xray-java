@@ -70,7 +70,7 @@ $ kubectl logs -l app=xray-daemon
 
 ## Step 9: Deploy Application that has X-Ray Configured
 
-## Step 10: Check AWS Console
+## Step 10: Check AWS Console > X-Ray
 - View Service Map
 - View Traces > Trace Overview
 - View Traces > Trace Details
