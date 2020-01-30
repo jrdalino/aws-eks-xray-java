@@ -106,7 +106,7 @@ $ docker push 222337787619.dkr.ecr.ap-southeast-2.amazonaws.com/bp-xray-daemon-e
 
 ## Step 8: Deploy the X-Ray DaemonSet
 ```
-$ kubectl create -f https://github.com/jrdalino/myproject-aws-eks-xray-java/xray-k8s-daemonset.yaml
+$ kubectl create -f https://github.com/jrdalino/myproject-aws-eks-xray-java/blob/master/xray-k8s-daemonset.yaml
 ```
 
 ## Step 9: Validate and View logs
